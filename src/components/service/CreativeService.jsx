@@ -76,14 +76,7 @@ function CreativeService() {
               </div>
               <div className="title-right">
                 <strong>Category</strong>
-                <div className="slider-navigations">
-                  <div className="swiper-button-prev-c">
-                    <i className="bi bi-arrow-left" />
-                  </div>
-                  <div className="swiper-button-next-c">
-                    <i className="bi bi-arrow-right" />
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>
