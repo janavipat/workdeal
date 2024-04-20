@@ -77,7 +77,18 @@ function FaqPage() {
                     data-wow-delay="200ms"
                     data-wow-duration="1500ms"
                   >
-                    
+                    <h2 className="accordion-header" id="headingone">
+                      <button
+                        className="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapseone"
+                        aria-expanded="false"
+                        aria-controls="collapseone"
+                      >
+                        01. How can OnDemand Services help me?
+                      </button>
+                    </h2>
                     <div
                       id="collapseone"
                       className="accordion-collapse collapse"
@@ -98,7 +109,18 @@ function FaqPage() {
                     data-wow-delay="300ms"
                     data-wow-duration="1500ms"
                   >
-                    
+                    <h2 className="accordion-header" id="headingtwo">
+                      <button
+                        className="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsetwo"
+                        aria-expanded="true"
+                        aria-controls="collapsetwo"
+                      >
+                        02. What is the Printing Quality?
+                      </button>
+                    </h2>
                     <div
                       id="collapsetwo"
                       className="accordion-collapse collapse show"
