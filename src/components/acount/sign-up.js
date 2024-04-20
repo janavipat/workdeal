@@ -119,7 +119,12 @@ function SignUpPage(props) {
     <div className="login-form">
       <Dialog open={showDialog} onClose={handleDialogClose}>
         <DialogTitle>Terms & Conditions</DialogTitle>
-        <p style={dialogstyle}>these are some terms you have to follow</p>
+        <p style={dialogstyle}> Your premier destination for all your home service needs. We
+                  are a trusted and reliable online platform that connects
+                  homeowners with top-rated service professionals in their local
+                  area. Our goal is to make it effortless for you to find and
+                  hire experienced professionals who can provide high-quality
+                  services to enhance your home.</p>
       </Dialog>
       <h3>Sign Up</h3>
       <span>

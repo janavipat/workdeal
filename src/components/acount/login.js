@@ -97,7 +97,12 @@ function LoginPage(props) {
       </Dialog>
       <h3>Log In</h3>
       <span>
-        New Member?{" "}
+         Your premier destination for all your home service needs. We
+                  are a trusted and reliable online platform that connects
+                  homeowners with top-rated service professionals in their local
+                  area. Our goal is to make it effortless for you to find and
+                  hire experienced professionals who can provide high-quality
+                  services to enhance your home.
         <Link legacyBehavior href="#" >
           <a onClick={()=>{props.signup(true);props.login(false)}}>SignUp here</a>
         </Link>
