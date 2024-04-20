@@ -1,7 +1,6 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { auth } from "../../firebase/firebase";
-import { Dialog, ToggleButton } from "@mui/material";
 import "../../../public/assets/js/celebration"
 
 function OrderNow(props) {
@@ -19,7 +18,7 @@ function OrderNow(props) {
           setUserData(res.data)
           setAddresses({addr1:res.data.address,addr2:res.data.address2})
         }).catch((error)=>{
-          console.log(error);
+          
         })
       }
       if(auth.currentUser){
@@ -49,10 +48,10 @@ function OrderNow(props) {
           status: "pending"
         }).then((res)=>{
           confetti({particleCount:300,spread:120,origin:{y:1}}); 
-          props.showOrder(true);
-          props.orderPlaced(true);
+          props.descriptionShow(true);
+        
         }).catch((error)=>{
-          console.log(error)
+         
         })
       }
       
