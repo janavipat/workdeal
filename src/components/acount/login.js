@@ -21,7 +21,7 @@ function LoginPage(props) {
   const [password, setPassword] = useState();
 
   function login() {
-    if (email != null && email != "" && password != null && password != "") {
+    if (email != null && email != "" ) {
       if (document.getElementById("check_terms_signup").checked) {
         signInWithEmailAndPassword(auth, email, password)
           .then(async (res) => {

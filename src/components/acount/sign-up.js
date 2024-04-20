@@ -31,10 +31,8 @@ function SignUpPage(props) {
       email != "" &&
       password != null &&
       password != "" &&
-      fname != null &&
-      fname != "" &&
-      lname != null &&
-      lname != ""
+      fname != null 
+    
     ) {
       if (document.getElementById("check_terms_signup").checked) {
         createUserWithEmailAndPassword(auth, email, password)
