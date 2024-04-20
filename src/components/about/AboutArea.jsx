@@ -15,8 +15,12 @@ function AboutArea() {
               <div className="about-title">
                 <span>About us</span>
                 <h2>
-                  Transform Your Home with Top-Quality Services: Discover the
-                  Ultimate Home Service Provider for All Your Needs!
+                Your premier destination for all your home service needs. We
+                  are a trusted and reliable online platform that connects
+                  homeowners with top-rated service professionals in their local
+                  area. Our goal is to make it effortless for you to find and
+                  hire experienced professionals who can provide high-quality
+                  services to enhance your home.
                 </h2>
               </div>
               <div>
