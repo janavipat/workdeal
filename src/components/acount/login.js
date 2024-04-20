@@ -65,7 +65,7 @@ function LoginPage(props) {
     const result = await signInWithPopup(auth, googleProvider)
       .then((res) => {
         if (
-          auth.currentUser.metadata.creationTime ===
+          auth.currentUser.metadata.creationTime ==
           auth.currentUser.metadata.lastSignInTime
         ) {
           window.location = "/login-google-required";
