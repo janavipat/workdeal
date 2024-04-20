@@ -67,24 +67,7 @@ function BlogDetailsPage() {
                           <img src={item.image2} alt="" />
                         </div>
                       </div>
-                      <ul>
-                        <li>
-                          <i className="bi bi-circle-fill" />
-                          {item.li1}
-                        </li>
-                        <li>
-                          <i className="bi bi-circle-fill" />
-                          {item.li2}
-                        </li>
-                        <li>
-                          <i className="bi bi-circle-fill" />
-                          {item.li3}
-                        </li>
-                        <li>
-                          <i className="bi bi-circle-fill" />
-                          {item.li4}
-                        </li>
-                      </ul>
+                      
                     </div>
                   </div>
                 </div>
