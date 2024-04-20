@@ -3,20 +3,22 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase/firebase";
 import cities from "../../data/profile/pincode_IN.json";
 import axios from "axios";
+import Swal from "sweetalert2"
 
 function UserProfile(props) {
   const [fname, setFname] = useState(props.user.fname);
   const [lname, setLname] = useState(props.user.lname);
   const [email, setEmail] = useState(props.user.email);
-  const [mobile, setMobileNumber] = useState(props.user.mobile);
+  const [mobile, setMobileNumber] = useState(props.user.mobile || " ");
   const [address, setAdress] = useState(props.user.address);
-  const [addrcity, setCity] = useState(props.user.city);
-  const [zipcode, setZipCode] = useState(props.user.zipcode);
+  const [addrcity, setCity] = useState(props.user.city || " ");
+  const [zipcode, setZipCode] = useState(props.user.zipcode || " ");
   const [addrstatename, setStateName] = useState("Gujarat");
   const [addrcountry, setCountry] = useState("India");
   const [password, setPass] = useState("");
 
   useEffect(() => {
+   
     if (zipcode && zipcode.length == 6) {
       fetch("https://api.postalpincode.in/pincode/" + zipcode)
         .then((response) => response.json())
@@ -24,9 +26,10 @@ function UserProfile(props) {
           setCity(responseJson[0].PostOffice[0].District);
         })
         .catch((error) => {
-          console.error(error);
+          
         });
     }
+    
   }, [zipcode, addrcity]);
 
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -39,11 +42,29 @@ function UserProfile(props) {
     ele.disabled = true;
     ele.style.backgroundColor = "Gray";
     if (password != null && password != "") {
-      if (zipcode.length != 6 && mobile.length!=10 && addrcity==null && address==null) {
+      console.log(zipcode.length != 6 || mobile.length!=1 || address.length>0 ) 
+      if (zipcode.length != 6 || mobile.length!=10  ) {
+       
+      if(zipcode.length!=6){
+          ele.disabled = false;
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "pincode must be 6 digits",
+           
+          });
+        }
+       else if(mobile.length!=10 ){
         ele.disabled = false;
-        ele.style.backgroundColor = "#5bb543";
-        window.alert("please fill correct details");
-      } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "mobile number must be 10 letter",
+           
+          });
+        }
+         }
+      else {
         signInWithEmailAndPassword(auth, email, password)
           .then((res) => {
             var typeofaccount;
@@ -67,17 +88,31 @@ function UserProfile(props) {
               })
               .then((res) => {
                 if (res.status == 200) {
-                  window.alert("Profile updated successfully");
-                  window.location = "/account";
+                  Swal.fire({
+                    title: "profile update",
+                    text: "succeffuly update profile",
+                    icon: "success"
+                  });
+                  
                 } else {
-                  window, alert("Something went wrong");
+                  Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something went wrong!"
+                    
+                  });
                 }
                 ele.disabled = false;
                 ele.style.backgroundColor = "#5bb543";
               });
           })
           .catch((error) => {
-            window.alert(error.message);
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text:"please enter valid password"
+             
+            });
             ele.disabled = false;
             ele.style.backgroundColor = "#5bb543";
           });
@@ -85,7 +120,11 @@ function UserProfile(props) {
     } else {
       ele.disabled = false;
       ele.style.backgroundColor = "#5bb543";
-      window.alert("Please enter password");
+      Swal.fire({
+        title: "The password?",
+        text: "please enter password",
+        icon: "question"
+      });
     }
   }
 
@@ -101,6 +140,13 @@ function UserProfile(props) {
                 name="fname"
                 id="fname"
                 value={fname}
+                style={{
+                  boxShadow:
+                    fname && !fname.match(/^[a-zA-Z][a-zA-Z0-9]*$/)
+                      ? "0px 1px 10px 0px rgb(255 0 0 / 50%)"
+                      
+                      : "",
+                }}
                 onChange={(e) => {
                   setFname(e.target.value);
                 }}
@@ -116,8 +162,15 @@ function UserProfile(props) {
                 name="lname"
                 id="lname"
                 value={lname}
+                style={{
+                  boxShadow:
+                    lname && !lname.match(/^[a-zA-Z][a-zA-Z0-9]*$/)
+                      ? "0px 1px 10px 0px rgb(255 0 0 / 50%)"
+                      
+                      : "",
+                }}
                 onChange={(e) => {
-                  setFname(e.target.value);
+                  setLname(e.target.value);
                 }}
                 placeholder="Your last name"
               />
@@ -127,7 +180,7 @@ function UserProfile(props) {
             <label>
               Contact Number
               <input
-                type="text"
+                type="number"
                 name="number"
                 id="number"
                 value={mobile}
@@ -147,6 +200,7 @@ function UserProfile(props) {
                 name="email"
                 id="email"
                 disabled={true}
+
                 value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
@@ -196,8 +250,8 @@ function UserProfile(props) {
               <label>
                 State
                 <input
-                  disabled="true"
-                  type="text"
+                disabled={true}
+                type="text"
                   name="state"
                   id="state"
                   value="Gujarat"
@@ -212,7 +266,7 @@ function UserProfile(props) {
             <label>
               Zip Code
               <input
-                type="text"
+                type="number"
                 name="zipcode"
                 id="zipcode"
                 value={zipcode}
@@ -228,7 +282,8 @@ function UserProfile(props) {
               <label>
                 Country
                 <input
-                  disabled="true"
+                                 disabled={true}
+
                   type="text"
                   name="country"
                   id="counry"
