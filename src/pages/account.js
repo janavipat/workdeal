@@ -511,72 +511,7 @@ function Accountpage() {
                   role="tabpanel"
                   aria-labelledby="v-pills-home-tab"
                 >
-                  <div className="row g-4">
-                    <div className="col-lg-6">
-                      <div className="order-box">
-                        <h5>Order Pending</h5>
-                        <div className="box-inner">
-                          <div className="icon">
-                            <img
-                              src="assets/images/icons/order-box-1.png"
-                              alt=""
-                            />
-                          </div>
-                          <h2>
-                            {" "}
-                            <CountUp
-                              start={0}
-                              end={orderPending}
-                              duration={1}
-                            />
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-6">
-                      <div className="order-box">
-                        <h5>Order Completed</h5>
-                        <div className="box-inner">
-                          <div className="icon">
-                            <img
-                              src="assets/images/icons/order-box-2.png"
-                              alt=""
-                            />
-                          </div>
-                          <h2>
-                            {" "}
-                            <CountUp
-                              start={0}
-                              end={orderComplete}
-                              duration={1}
-                            />
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-lg-12">
-                      <div className="order-box">
-                        <h5>Total Order</h5>
-                        <div className="box-inner">
-                          <div className="icon">
-                            <img
-                              src="assets/images/icons/order-box-4.png"
-                              alt=""
-                            />
-                          </div>
-                          <h2>
-                            {" "}
-                            <CountUp
-                              start={0}
-                              end={orderPending + orderComplete}
-                              duration={3}
-                            />
-                          </h2>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                 
                 </div>
                 <div
                   className="tab-pane fade show active"
