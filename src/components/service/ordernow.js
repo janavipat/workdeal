@@ -63,15 +63,7 @@ function OrderNow(props) {
       
       <div className="row gy-4 align-items-center" style={{display:"contents"}}>
         <div className="col-md-6 col-lg-4" style={{width:"fit-content"}} onClick={()=>handleAddrClick(1)}>
-          <div className="info" style={{paddingLeft:"50px",paddingRight:"50px"}}>
-            <div className="icon">
-              <i className="fas fa-map-marker-alt" />
-            </div>
-            <div className="desc">
-              <h4>Address 1</h4>
-              <p>{addresses ? addresses.addr1 ? addresses.addr1 : "No other address found" : "please wait"}</p>
-            </div>
-          </div>
+          
         </div>
         <div className="col-md-6 col-lg-4" style={{width:"fit-content"}} onClick={()=>handleAddrClick(2)}>
           <div className="info" style={{paddingLeft:"50px",paddingRight:"50px"}}>
