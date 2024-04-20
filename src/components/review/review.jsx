@@ -1,12 +1,45 @@
 import axios from "axios";
 import React from "react";
 import { useState, useEffect } from "react";
-
+import { auth } from "../../firebase/firebase";
+import styles from "../review/review.module.css";
 function Review(props) {
   const [rating, setrating] = useState(0);
   const [review, setReview] = useState("");
   const [price, setPrice] = useState();
+  const [disabled, setDisabled] = useState(false);
 
+  
+  const handleRatingChange = (value) => {
+    setrating(value);
+    
+  }
+  const fetchData = async () => {
+    console.log(props.clientUid,props.workId)
+    try {
+       await axios .get("http://localhost:5000/get-last-data",{
+        params:{
+        workerid :auth.currentUser.uid,
+         userid:props.uid
+        }
+      }).then((res)=>{
+        if(res.data[0].ptype==="online"){
+          setPrice(res.data[0].price)
+       
+          setDisabled(true);
+        }
+       else{
+        setDisabled(false)
+       }
+      })
+     } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []); 
   const handleSubmit = () => {
     if (rating != 0 && review != "" && price != null) {
       axios.get("http://localhost:5000/get-review-score",{params:{
@@ -38,14 +71,14 @@ function Review(props) {
               uid:props.uid,
               score:score,
             }).then((res)=>{
-              console.log(res)
+             
               props.closeDialog(false)              
             }).catch((err)=>{
-              console.log(err);
+              
             })
         })
         .catch((error) => {
-          console.log(error);
+         
         });
       })
     
@@ -53,74 +86,49 @@ function Review(props) {
         window.alert("please enter valid fields")
     }
   }
-
+ 
+  
   return (
     <div className="container d-flex justify-content-center ">
       <div className="row">
         <center>
           <div className="col-lg-12">
             <div className="stars">
-              <form action="">
-                <input
-                  className="star star-5"
-                  id="star-5"
-                  type="radio"
-                  name="star"
-                  onClick={() => {
-                    setrating(5);
-                  }}
-                />
+           
 
-                <label className="star star-5" for="star-5"></label>
+    <div className={styles.rating}>
+    {[...Array(5)].map((_, index=0) => {
+        const ratingValue = index+1 ;
+        
+        return (
+          <React.Fragment key={ratingValue}>
+            <input
+              type="radio"
+              id={`rating-${ratingValue}`}
+              name="rating"
+              value={ratingValue}
+              checked={rating === ratingValue}
+              onChange={() => handleRatingChange(ratingValue)}
+            />
+            <label htmlFor={`rating-${ratingValue}`}>
+              {ratingValue < rating ? '★' : '☆'}
+            </label>
+          </React.Fragment>
+        );
+      })}
+    </div>
+    {rating > 0 && (
+    //   <div className={styles['emoji-wrapper']}>
+        <div className={styles.emoji}>
+          {rating === 5 && '😞'}
+          {rating === 4 && '😐'}
+          {rating === 3 && '😊'}
+          {rating === 2 && '😃'}
+          {rating === 1 && '😍'}
+        </div>
+    //   </div>
+    )}
 
-                <input
-                  className="star star-4"
-                  id="star-4"
-                  type="radio"
-                  name="star"
-                  onClick={() => {
-                    setrating(4);
-                  }}
-                />
-
-                <label className="star star-4" for="star-4"></label>
-
-                <input
-                  className="star star-3"
-                  id="star-3"
-                  type="radio"
-                  name="star"
-                  onClick={() => {
-                    setrating(3);
-                  }}
-                />
-
-                <label className="star star-3" for="star-3"></label>
-
-                <input
-                  className="star star-2"
-                  id="star-2"
-                  type="radio"
-                  name="star"
-                  onClick={() => {
-                    setrating(2);
-                  }}
-                />
-
-                <label className="star star-2" for="star-2"></label>
-
-                <input
-                  className="star star-1"
-                  id="star-1"
-                  type="radio"
-                  name="star"
-                  onClick={() => {
-                    setrating(1);
-                  }}
-                />
-
-                <label className="star star-1" for="star-1"></label>
-              </form>
             </div>
           </div>
           <p>This helps us to provide better service</p>
@@ -139,16 +147,22 @@ function Review(props) {
                 placeholder="Your experience"
               />
             </label>
+
             <label>
               Amount taken by service provider
-              <input
-                type="number"
-                value={price}
-                onChange={(e) => {
-                  setPrice(e.target.value);
-                }}
-                placeholder="Amount in rupees"
-              />
+            
+            {disabled ? <input
+              type="number"
+              value={price}
+              
+              placeholder={"Amount in rupees"}
+            /> : <input onChange={(e) => {
+             
+              setPrice(e.target.value);
+            }}
+            type="number"
+            value={price}
+            />}
             </label>
 
             <button id="btn_submit_updat_profile" type="button" onClick={handleSubmit}>
