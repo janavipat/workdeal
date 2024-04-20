@@ -79,10 +79,7 @@ function Banner1(props) {
   const options = [
     { value: "Ahmedabad", label: "Ahmedabad" },
     { value: "vadodara", label: "Vadodara" },
-    { value: "Rajkot", label: "Rajkot" },
-    { value: "Surat", label: "Surat" },
-    { value: "Anand", label: "Anand" },
-    { value: "Jamnagar", label: "Jamnagar" },
+    
   ];
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -168,9 +165,7 @@ function Banner1(props) {
             <h1>Your trusted destination for all household service needs!</h1>
             <p>
               We understand the importance of finding reliable workers who can
-              provide exceptional service for your household tasks.Take the
-              first step towards enhancing your home with the help of trusted
-              experts.
+              provide exceptional service for your household tasks.
             </p>
             {error && showTooltip && (
               <div
@@ -304,16 +299,7 @@ function Banner1(props) {
                       <a>House Shift</a>
                     </Link>
                   </li>
-                  <li onClick={() => handleService("Ac Repair")}>
-                    <Link legacyBehavior href="/service">
-                      <a>AC Repair</a>
-                    </Link>
-                  </li>
-                  <li onClick={() => handleService("Salon")}>
-                    <Link legacyBehavior href="/service">
-                      <a>Salon </a>
-                    </Link>
-                  </li>
+                 
                 </ul>
               </div>
             </div>
