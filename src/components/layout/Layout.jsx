@@ -2,6 +2,8 @@ import Head from "next/head";
 import React from "react";
 import Footer2 from "../footer/Footer2";
 import Header2 from "../header/Header2";
+import { Provider } from 'react-redux';
+
 
 function Layout({ children }) {
   return (
@@ -22,9 +24,12 @@ function Layout({ children }) {
           sizes="20x20"
         />
       </Head>
+      <Provider store={store}>
       <Header2 />
       {children}
       <Footer2 />
+      </Provider>
+
     </>
   );
 }
