@@ -62,71 +62,16 @@ app.get("/get-review-score", async (req, res) => {
 });
 
 app.get("/get-review-score-from-service", getreviewfromservice);
-// async (req, res) => {
-//   servicesModel
-//     .findOne({ uid: req.query.uid })
-//     .then((resp) => {
-//       res.send(resp);
-//     })
-//     .catch((err) => {
-//       console.log("rs" + err);
-//     });
-// });
+
 
 app.post("/set-review-score", setreviewscore)
-// async (req, res) => {
-  
-//   servicesModel
-//     .findOneAndUpdate(
-//       { uid: req.body.uid },
-//       {
-//         $set: {
-//           review_score: req.body.score,
-//         },
-//       }
-//     )
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+
 
 app.get("/get-work-count", getworkcount)
-// , async (req, res) => {
-//   await OrderWorker.find({ orderToUid: req.query.uid })
-//     .then((data) => {
-//       console.log(data);
-//       if (data) {
-//         res.send(data.length.toString());
-//       } else {
-//         res.send("0");
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+
 
 app.post("/set-work-count", setworkcount);
-// async (req, res) => {
-//   servicesModel
-//     .findOneAndUpdate(
-//       { uid: req.body.uid },
-//       {
-//         $set: {
-//           no_works: req.body.count,
-//         },
-//       }
-//     )
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       console.log(err + "a");
-//     });
-// });
+
 
 
 
@@ -152,76 +97,14 @@ async function middleware(request, response, next) {
 }
 
 app.post("/create-user-client",createuserclient);
-//  async (request, response) => {
-//   const signup = new userClientModel(request.body);
-//   try {
-//     await signup.save();
-//     response.send(signup);
-//   } catch (error) {
-//     response.status(500).send(error);
-//   }
-// });
+
 
 
 app.post("/checkworkeractive", checkworkeractive);
-// (req, res) => {
-//   const workeractive = new servicesModel(req.body);
-//   workeractive.collection.findOne(
-//     { uid: req.body.uid },
-//     async function (error, data) {
-//       if (error) {
-//         console.log(error);
-//       }
-//       if (data && data.enabled) {
-//         res.send("online");
-//       } else  {
-//         res.send("offline");
-//       }
-      
-//     }
-//   );
-// });
+
 
 app.post("/setworkeractive",setworkeractive)
-//  (req, res) => {
-//   const workeractive = new servicesModel(req.body);
-//   console.log(req.body.location);
-//   workeractive.collection
-//     .findOneAndUpdate(
-//       { uid: req.body.uid },
-//       {
-//         $set: {
-//           no_works: req.body.no_works,
-//           enabled: true,
-//           location:req.body.location
-//         },
-//       }
-//     )
-//     .then((r) => {
-//       console.log(r)
-//       if(r.value){
-//         res.send("done");
-//       }else{
-//         try {
-//           workeractive.save();
-//           res.send("done");
-//         } catch (error) {
-//           console.log(error);
-//           res.status(500).send(error);
-//         }
-//       }
-//     })
-//     .catch(async (err) => {
-//       console.log(err);
-//       try {
-//         await workeractive.save();
-//         res.send("done");
-//       } catch (error) {
-//         console.log(error);
-//         res.status(500).send(error);
-//       }
-//     });
-// });
+
 
 app.post("/setworkeroffline", setworkeroffline)
 // (req, res) => {
